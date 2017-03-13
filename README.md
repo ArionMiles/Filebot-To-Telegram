@@ -21,7 +21,9 @@ Send a message to @Filebot\_bot on Telegram to start conversation, introduce you
 `> telegram.py "The Flash (2014)" "S03E15 - The Wrath of Savitar is ready."`
 
 Here's the config I use for my setup:
-`telegram.py "*{movie}{episode; n}*" "_{movie; 'The movie'}{episode; s00e00}{episode; ' - '}{episode; t}_ is ready."`
+```
+telegram.py "*{movie}{episode; n}*" "_{movie; 'The movie'}{episode; s00e00}{episode; ' - '}{episode; t}_ is ready."
+```
 Note that the asterisks (*) and underscores (_) are for Bold and Italic respectively.
 
 You can put the above string in a text file and call it after execution of your AMC script by adding:

@@ -9,21 +9,18 @@ The bot is used in conjunction with a Automated Media Center, for example, my ow
 By default, Filebot's AMC script provides a Pushbullet feature which sends a pushbullet notifications with a HTML documents of the files processed, and the title of the Pushbullet is the torrent's name. I needed something more concise, and the amount of text that can fit into a push notification and not require me to see the HTML doc along with it to see the files processed.
 
 # Installation
-Send a message to @Filebot\_bot on Telegram to start conversation, introduce yourself (say hello). Send the words "Chat ID" and it replies with a numerical string. Copy the Chat ID you received to telegram.py (line 10: CHAT_ID). You're all set!
-
+Send a message to [@Filebot\_bot](https://t.me/Filebot_bot) on Telegram to start conversation, introduce yourself (say hello). Send command `/chatid` and it replies with a numerical string. Copy the Chat ID you received to `creds.ini` file under `CHAT_ID`. You're all set!
 
 # Usage
 
 ## Syntax:
-`> telegram.py "First Line" "Second Line"`
+`> telegram.py -t "TITLE" [-m "MESSAGE"]`
 
 ## Example:
 `> telegram.py "The Flash (2014)" "S03E15 - The Wrath of Savitar is ready."`
 
 Here's the config I use for my setup:
-```
-telegram.py "*{movie}{episode; n}*" "_{movie; 'The movie'}{episode; s00e00}{episode; ' - '}{episode; t}_ is ready."
-```
+`telegram.py "*{movie}{episode; n}*" "{movie; 'The movie'}+{episode; s00e00}{episode; ' - '}{episode; t}_ is ready."`
 Note that the asterisks (*) and underscores (_) are for Bold and Italic respectively.
 
 You can put the above string in a text file and call it after execution of your AMC script by adding:

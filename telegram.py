@@ -1,14 +1,27 @@
 import requests
 import sys
 import json
-if len(sys.argv) <3:
-	print("Usage: telegram.py \"YOUR_MESSAGE\" \" Second_line \"")
+import ConfigParser
+import argparse
+
+# Read settings from creds.ini
+config = ConfigParser.RawConfigParser()
+config.read('creds.ini')
+API_KEY_TOKEN = config.get('CREDS', 'API_TOKEN')
+CHAT_ID = config.get('CREDS', 'CHAT_ID')
+
+parser = argparse.ArgumentParser(description="Filebot report tool.")
+parser.add_argument('-title','-t', type=str, help="Message title", required=True)
+parser.add_argument('-message','-m', type=str, help="Message content", required=False, default="")
+args = parser.parse_args()
+
+title = args.title
+message = args.message
+
+if args.message == "":
+	message = title
 else:
-	message = sys.argv[1] + "\n" + sys.argv[2]
- 
-# Your API key & CHAT_ID here
-API_KEY_TOKEN = "317819012:AAHE55sERM1t7bPPvUq8Y9HRU3Rm0T3omX0"
-CHAT_ID = "317392351"
+	message = title + "\n" + message
 
 # defining the api-endpoint 
 API_ENDPOINT = "https://api.telegram.org/bot" + API_KEY_TOKEN + "/sendMessage" 

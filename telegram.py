@@ -1,46 +1,46 @@
-import requests
-import sys
+'''Import requirements'''
+import argparse
 import json
 import ConfigParser
-import argparse
+import requests
 
 # Read settings from creds.ini
-config = ConfigParser.RawConfigParser()
-config.read('creds.ini')
-API_KEY_TOKEN = config.get('CREDS', 'API_TOKEN')
-CHAT_ID = config.get('CREDS', 'CHAT_ID')
+CONFIG = ConfigParser.RawConfigParser()
+CONFIG.read('C:/Users/Kanishk/Documents/Automation/creds.ini')
+API_KEY_TOKEN = CONFIG.get('CREDS', 'API_TOKEN')
+CHAT_ID = CONFIG.get('CREDS', 'CHAT_ID')
 
-parser = argparse.ArgumentParser(description="Filebot report tool.")
-parser.add_argument('-title','-t', type=str, help="Message title", required=True)
-parser.add_argument('-message','-m', type=str, help="Message content", required=False, default="")
-args = parser.parse_args()
+PARSER = argparse.ArgumentParser(description="Filebot report tool.")
+PARSER.add_argument('-title', '-t', type=str, help="Message title", required=True)
+PARSER.add_argument('-message', '-m', type=str, help="Message content", required=False, default="")
+ARGS = PARSER.parse_args()
 
-title = args.title
-message = args.message
+TITLE = ARGS.title
+MESSAGE = ARGS.message
 
-if args.message == "":
-	message = title
+if ARGS.message == "":
+    MESSAGE = TITLE
 else:
-	message = title + "\n" + message
+    MESSAGE = TITLE + "\n" + MESSAGE
 
-# defining the api-endpoint 
-API_ENDPOINT = "https://api.telegram.org/bot" + API_KEY_TOKEN + "/sendMessage" 
- 
-# data to be sent to api
-data = {'text':message,
+# Defining the api-endpoint
+API_ENDPOINT = "https://api.telegram.org/bot" + API_KEY_TOKEN + "/sendMessage"
+
+# Data to be sent to API
+DATA = {'text':MESSAGE,
         'chat_id':CHAT_ID,
         'parse_mode': 'markdown'}
- 
-# sending post request and saving response as response object
-r = requests.post(url = API_ENDPOINT, data = data)
-status = str(r.status_code)
-parsed_json = json.loads(r.text)
-ok = str(parsed_json['ok'])
-if "error_code" in parsed_json:
-	error_code = str(parsed_json['error_code'])
 
-# extracting response text 
-if r.status_code == 200:
-	print ("Message sent!")
+# sending post request and saving response as response object
+R = requests.post(url=API_ENDPOINT, data=DATA)
+STATUS = str(R.status_code)
+DICT = json.loads(R.text)
+OK = str(DICT['ok'])
+if "error_code" in DICT:
+    ERROR_CODE = str(DICT['error_code'])
+
+# Extracting response text
+if R.status_code == 200:
+    print "Message sent!"
 else:
-	print "OK: " + ok + "\n" + "Error: " + error_code + "\n" + "Description: " + parsed_json['description']
+    print "OK: " + OK + "\n" + "Error: " + ERROR_CODE + "\n" + "Description: " + DICT['description']

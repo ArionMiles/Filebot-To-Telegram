@@ -6,7 +6,7 @@ import requests
 
 # Read settings from creds.ini
 CONFIG = ConfigParser.RawConfigParser()
-CONFIG.read('C:/Users/Kanishk/Documents/Automation/creds.ini')
+CONFIG.read('creds.ini')
 API_KEY_TOKEN = CONFIG.get('CREDS', 'API_TOKEN')
 CHAT_ID = CONFIG.get('CREDS', 'CHAT_ID')
 

@@ -13,6 +13,8 @@ Send a message to [@Filebot\_bot](https://t.me/Filebot_bot) on Telegram to start
 
 # Usage
 
+**NOTE:** If adding this script to your environment variables, edit [line 9](https://github.com/ArionMiles/Filebot-To-Telegram/blob/master/telegram.py#L9), `'creds.ini'` to its absolute path (e.g: C:\Docs\User\creds.ini)
+
 ## Syntax:
 `> telegram.py -t "TITLE" [-m "MESSAGE"]`
 

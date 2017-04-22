@@ -9,7 +9,7 @@ The bot is used in conjunction with a Automated Media Center, for example, my ow
 By default, Filebot's AMC script provides a Pushbullet feature which sends a pushbullet notifications with a HTML documents of the files processed, and the title of the Pushbullet is the torrent's name. I needed something more concise, and the amount of text that can fit into a push notification and not require me to see the HTML doc along with it to see the files processed.
 
 # Installation
-Send a message to [@Filebot\_bot](https://t.me/Filebot_bot) on Telegram to start conversation, introduce yourself (say hello). Send command `/chatid` and it replies with a numerical string. Copy the Chat ID you received to `creds.ini` file under `CHAT_ID`. You're all set!
+Send a message to [@Filebot\_bot](https://t.me/Filebot_bot) on Telegram to start conversation, introduce yourself (say hello). Send command `/chatid` and it replies with a numerical string. Copy the Chat ID you received to `creds.ini` (remove [SAMPLE] from the name) file under `CHAT_ID`. You're all set!
 
 # Usage
 

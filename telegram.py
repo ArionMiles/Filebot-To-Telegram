@@ -1,8 +1,12 @@
+#!/usr/bin/env python
 '''Import requirements'''
 import argparse
 import json
 import ConfigParser
 import requests
+
+__author__ = 'Kanishk Singh (Arion Miles)'
+__license__ = "MIT"
 
 # Read settings from creds.ini
 CONFIG = ConfigParser.RawConfigParser()
@@ -31,16 +35,16 @@ DATA = {'text':MESSAGE,
         'chat_id':CHAT_ID,
         'parse_mode': 'markdown'}
 
-# sending post request and saving response as response object
+# Sending post request and saving response as response object
 R = requests.post(url=API_ENDPOINT, data=DATA)
 STATUS = str(R.status_code)
 DICT = json.loads(R.text)
 OK = str(DICT['ok'])
 if "error_code" in DICT:
-    ERROR_CODE = str(DICT['error_code'])
+    ERR_CODE = str(DICT['error_code'])
 
 # Extracting response text
 if R.status_code == 200:
-    print "Message sent!"
+    print('Message sent!')
 else:
-    print "OK: " + OK + "\n" + "Error: " + ERROR_CODE + "\n" + "Description: " + DICT['description']
+    print('OK: ' + OK + '\n' + 'Error: ' + ERR_CODE + '\n' + 'Description: ' + DICT['description'])

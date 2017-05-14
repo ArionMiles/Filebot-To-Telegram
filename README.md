@@ -9,7 +9,7 @@ The bot is used in conjunction with a Automated Media Center, for example, my ow
 By default, Filebot's AMC script provides a Pushbullet feature which sends a pushbullet notifications with a HTML documents of the files processed, and the title of the Pushbullet is the torrent's name. I needed something more concise, and the amount of text that can fit into a push notification and not require me to see the HTML doc along with it to see the files processed.
 
 # Installation
-We're using a telegram BOT for sending messages. [Start here](https://core.telegram.org/bots#3-how-do-i-create-a-bot) to learn how to create one for bot token. You can message [@get_id](https://telegram.me/get_id_bot) with `/my_id` and it'll give you a 9-digit Chat ID. Copy the Bot Toekn & Chat ID you received to `creds.ini` (remove [SAMPLE] from the name) file under `API_TOKEN` & `CHAT_ID` respectively. You're all set!
+We're using a telegram BOT for sending messages. [Start here](https://core.telegram.org/bots#3-how-do-i-create-a-bot) to learn how to create one for bot token. You can message [@get_id](https://telegram.me/get_id_bot) with `/my_id` and it'll give you a 9-digit Chat ID. Copy the Bot Token & Chat ID you received to `creds.ini` (remove [SAMPLE] from the name) file under `API_TOKEN` & `CHAT_ID` respectively. You're all set!
 
 # Usage
 
@@ -22,7 +22,7 @@ We're using a telegram BOT for sending messages. [Start here](https://core.teleg
 `> telegram.py -t "The Flash (2014)" -m "S03E15 - The Wrath of Savitar is ready."`
 
 Here's the config I use for my setup:
-`telegram.py -t "*{movie}{episode; n}*" -m "{movie; 'The movie'}_{episode; s00e00}{episode; ' - '}{episode; t}_ is ready."`
+`telegram.py -t {quote("* $n *")} -m {quote("The $type _ ${any{episode; s00e00 + ' - ' + t}{movie}} _ is ready.")}`
 Note that the asterisks (*) and underscores (_) are for Bold and Italic respectively.
 
 You can put the above string in a text file and call it after execution of your AMC script by adding:

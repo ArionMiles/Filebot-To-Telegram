@@ -28,6 +28,22 @@ Note that the asterisks (*) and underscores (_) are for Bold and Italic respecti
 You can put the above string in a text file and call it after execution of your AMC script by adding:
 `--def exec="@path/to/args.txt"` to the script you add to Torrent client's *Execute after torrent completion* script.
 
+## Common Issues:
+
+If you're on Windows and cannot run the telegram script from the command line after adding it to env. variables, do the following:
+
+Regedit > `HKEY_CLASSES_ROOT\Applications\python27.exe\shell\open\command`
+   
+And change the value from : `"C:\Python27\python.exe" "%1"`
+   
+To: `"C:\Python27\python.exe" "%1" %*`
+
+Similarly, set `HKEY_CLASSES_ROOT\py_auto_file\shell\open\command` to the same value. 
+
+**adjust the path to your specific Python version.**
+
+Read more about this [here.](http://eli.thegreenplace.net/2010/12/14/problem-passing-arguments-to-python-scripts-on-windows/)
+
 # License
 MIT License
 

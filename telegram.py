@@ -46,6 +46,6 @@ def telegram(message_title, message_content):
         print('OK: ' + OK + '\n' + 'Error: ' + ERR_CODE + '\n' + 'Description: ' + DICT['description'])
 
 if __name__ == '__main__':
-    message_title = ARGS.message
+    message_title = ARGS.title
     message_content = ARGS.message
     telegram(message_title, message_content)

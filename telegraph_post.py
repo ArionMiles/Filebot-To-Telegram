@@ -7,7 +7,7 @@ __license__ = "MIT"
 
 PARSER = argparse.ArgumentParser(description="Telegra.ph submitter")
 PARSER.add_argument('-title', '-t', type=str, help="Post title", required=False)
-#PARSER.add_argument('-content', '-c', type=str, nargs='*', help="Post content", required=False)
+PARSER.add_argument('-content', '-c', type=str, nargs='*', help="Post content", required=False)
 ARGS = PARSER.parse_args()
 
 def telegraph_submit(message_title, message_content):

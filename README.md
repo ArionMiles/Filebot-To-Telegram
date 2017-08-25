@@ -15,18 +15,29 @@ We're using a telegram BOT for sending messages. [Start here](https://core.teleg
 
 **NOTE:** If adding this script to your environment variables, edit [line 9](https://github.com/ArionMiles/Filebot-To-Telegram/blob/master/telegram.py#L9), `'creds.ini'` to its absolute path (e.g: C:\Docs\User\creds.ini)
 
-## Syntax:
+## telegram.py
+#### Syntax:
 `> telegram.py -t "TITLE" [-m "MESSAGE"]`
 
-## Example:
+#### Example:
 `> telegram.py -t "The Flash (2014)" -m "S03E15 - The Wrath of Savitar is ready."`
 
+## telegraph_post.py
+#### Syntax:
+`> telegraph_post.py -t "TITLE" -c "CONTENT"`
+Mainly made for use by Notifications_Processor in my Torrent Automation setup to submit a list of files processed.
+
+----
+
 Here's the config I use for my setup:
-`telegram.py -t {quote("* $n *")} -m {quote("The $type _ ${any{episode; s00e00 + ' - ' + t}{movie}} _ is ready.")}`
-Note that the asterisks (*) and underscores (_) are for Bold and Italic respectively.
+```
+echo {quote("$n")} | Out-File -Encoding UTF8 SeriesName.txt; echo {quote("<b>${any{episode; s00e00 + ' - ' + t}{movie}}</b>")} | Out-File -Encoding UTF8 EpisodeDet.txt -append
+```
 
 You can put the above string in a text file and call it after execution of your AMC script by adding:
 `--def exec="@path/to/args.txt"` to the script you add to Torrent client's *Execute after torrent completion* script.
+
+This writes the name of the Series and Episodes processed to two files: `SeriesName` and `EpisodeDet.txt` respectively. Then, `Notification_Processor` checks whether the file `EpisodeDet.txt` contains more than 1 episode, and if it does, submits them to telegra.ph and sends the link to Telegram via bot. If it doesn't, then it sends the Name and Episode details to Telegram in text format via bot.
 
 ## Common Issues:
 

@@ -2,15 +2,26 @@
 '''Import requirements'''
 import argparse
 import json
-import ConfigParser
+try:
+    import configparser
+except ImportError:
+    import ConfigParser as configparser
+import logging
 import requests
 
 __author__ = 'Kanishk Singh (Arion Miles)'
 __license__ = "MIT"
 
+logger = logging.getLogger()
+handler = logging.FileHandler('E:/New/config/notifications.log') #Use absolute paths
+formatter = logging.Formatter('%(asctime)s %(name)-12s %(levelname)-8s %(message)s')
+handler.setFormatter(formatter)
+logger.addHandler(handler)
+logger.setLevel(logging.DEBUG)
+
 # Read settings from creds.ini
-CONFIG = ConfigParser.RawConfigParser()
-CONFIG.read('creds.ini')
+CONFIG = configparser.ConfigParser()
+CONFIG.read("E:/New/config/creds.ini")
 API_KEY_TOKEN = CONFIG.get('CREDS', 'API_TOKEN')
 CHAT_ID = CONFIG.get('CREDS', 'CHAT_ID')
 
@@ -41,9 +52,9 @@ def telegram(message_title, message_content):
 
     # Extracting response text
     if R.status_code == 200:
-        print('Message sent!')
+        logger.info('Message sent!')
     else:
-        print('OK: ' + OK + '\n' + 'Error: ' + ERR_CODE + '\n' + 'Description: ' + DICT['description'])
+        logger.info('OK: ' + OK + '| Error: ' + ERR_CODE + '| Description: ' + DICT['description'])
 
 if __name__ == '__main__':
     message_title = ARGS.title
